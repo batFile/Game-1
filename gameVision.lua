@@ -52,6 +52,20 @@ function onStoryOne()
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
 end
 
+-- close game Part
+
+function closeapp()
+    if  system.getInfo("platformName")=="Android" then
+		native.requestExit()
+    else
+		os.exit();
+    end
+end
+
+-- function closeBtn:tap( event )
+    -- timer.performWithDelay(1000, closeapp);
+-- end    
+
 function deleteAll()
 	if background then
 		background:removeSelf();
@@ -98,6 +112,7 @@ function scene:show( event )
 
 	elseif phase == "did" then
 		-- playBtn:addEventListener('tap', onPlayBtn);
+		closeBtn:addEventListener( "tap", closeapp );
 	end	
 end
 
