@@ -2,6 +2,7 @@ local composer = require( "composer" );
 local scene = composer.newScene();
 
 local sceneGroup;
+
 local background;
 local title;
 local content;
@@ -9,6 +10,9 @@ local storyOne;
 local storyTwo;
 local conf;
 local closeBtn;
+
+local congBlock;
+local closeConf;
 
 function createAll(scene)
 	background = display.newImageRect("testBG.jpg", display.contentWidth, display.contentHeight);
@@ -39,6 +43,14 @@ function createAll(scene)
 	closeBtn.x = display.contentCenterX+200;
 	closeBtn.y = display.contentCenterY*1.8;
 	
+	congBlock = display.newImageRect("UNDER-CONSTRUCTION.png", 800, 600);
+	congBlock.x = display.contentCenterX*4;
+	congBlock.y = display.contentCenterY;
+	
+	closeConf = display.newImageRect("exitBtn.png", 100, 100);
+	closeConf.x = display.contentCenterX*4;
+	closeConf.y = display.contentCenterY/1.4;
+	
 	scene:insert( background );
 	scene:insert( content );
 	scene:insert( title );
@@ -46,7 +58,24 @@ function createAll(scene)
 	scene:insert( storyTwo );
 	scene:insert( conf );
 	scene:insert( closeBtn );
+	
+	scene:insert( congBlock );
+	scene:insert( closeConf );
 end
+
+-- open, close config part (music, sounds, achivments)
+
+function onConf()
+	congBlock.x = display.contentCenterX;
+	closeConf.x = display.contentCenterX+150;
+end
+
+function onCloseConf()
+	congBlock.x = display.contentCenterX*4;
+	closeConf.x = display.contentCenterX*4;
+end
+
+-- go to another scene
 
 function onStoryOne()
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
@@ -61,10 +90,6 @@ function closeapp()
 		os.exit();
     end
 end
-
--- function closeBtn:tap( event )
-    -- timer.performWithDelay(1000, closeapp);
--- end    
 
 function deleteAll()
 	if background then
@@ -87,9 +112,17 @@ function deleteAll()
 		storyTwo:removeSelf();
 		storyTwo = nil;
 	end
-	if achivments then
-		achivments:removeSelf();
-		achivments = nil;
+	if conf then
+		conf:removeSelf();
+		conf = nil;
+	end
+	if congBlock then
+		congBlock:removeSelf();
+		congBlock = nil;
+	end
+	if closeConf then
+		closeConf:removeSelf();
+		closeConf = nil;
 	end
 	if closeBtn then
 		closeBtn:removeSelf();
@@ -111,7 +144,9 @@ function scene:show( event )
 	if phase == "will" then
 
 	elseif phase == "did" then
-		-- playBtn:addEventListener('tap', onPlayBtn);
+		conf:addEventListener( "tap", onConf );
+		closeConf:addEventListener( "tap", onCloseConf );
+		storyOne:addEventListener('tap', onStoryOne);
 		closeBtn:addEventListener( "tap", closeapp );
 	end	
 end
@@ -124,7 +159,6 @@ end
 -- Listener setup
 scene:addEventListener( "create", scene );
 scene:addEventListener( "show", scene );
-scene:addEventListener( "hide", scene );
 scene:addEventListener( "destroy", scene );
 
 -----------------------------------------------------------------------------------------
