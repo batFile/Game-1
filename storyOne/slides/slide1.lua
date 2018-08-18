@@ -1,50 +1,130 @@
 local composer = require( "composer" );
+local count = require( "storyOne.gameVisionOne" );
 local scene = composer.newScene();
 
+local check = 0;
+local Timer;
+
 local sceneGroup;
-
-local count;
-
 local background;
 local backBtn;
+
+local count = 1;
 
 local choiceBtnOne;
 local choiceBtnTwo;
 
+local clickBox;
+	
 local bgText;
-local subject;
-local subjectTxt;
-local subjectName;
-	
-function createSubjects(scene)
-	
-	local tmpFace = "4-1";
-	local tmpName = "Test";
-	local tmpWords = "Test";
-	
-	bgText = display.newImageRect("bgText.png", display.contentWidth, display.contentHeight/3.2);
-	bgText.x = display.contentCenterX;
-	bgText.y = display.contentCenterY*1.4;
-	bgText.alpha = 0;
-	
-	subject = display.newImageRect("storyOne/subjects/"..tmpFace..".png", display.contentWidth/2.2, display.contentHeight/3.2);
-	subject.x = display.contentCenterX*1.7;
-	subject.y = display.contentCenterY/1.1;
-	subject.alpha = 0;
+local bgName;
 
-	local optionsTxtW = {
-		text = ""..tmpWords,
-		x = display.contentCenterX-45,
-		y = display.contentHeight/1.4,
-		width = display.contentWidth/1.4,
-		height = display.contentHeight/3.8,
-		font = native.systemFontBold,
-		fontSize = 46,
-		align = "center"
-	}
+local faceOne;
+local faceTwo;
+local faceThree;
+local faceFour;
+local faceFive;
+
+local faceSix;
+local faceSeven;
+local faceEight;
+local faceNine;
+local faceTen;
+
+local faceEleven;
+
+local nameOne;
+local nameTwo;
+local nameThree;
+
+local nameFour;
+local nameFive;
+local nameSix;
+
+local wordsOne;
+local wordsTwo;
+local wordsThree;
+local wordsFour;
+local wordsFive;
+
+local wordsSix;
+local wordsSeven;
+local wordsEight;
+local wordsNine;
+local wordsTen;
+
+local wordsEleven;
+local wordsTwelve;
+local wordsThirteen;
+local wordsFourteen;
+local wordsFifteen;
+
+local wordsSixteen;
+local wordsSeventeen;
+local wordsEighteen;
+local wordsNineteen;
+local wordsTwenty;
+
+local wordsTwentyOne;
+local wordsTwentyTwo;
+local wordsTwentyThree;
+local wordsTwentyFour;
+local wordsTwentyFive;
+
+local wordsTwentySix;
+local wordsTwentySeven;
+local wordsTwentyEight;
+local wordsTwentyNine;
+local wordsThirty;
+
+local wordsThirtyOne;
+local wordsThirtyTwo;
+local wordsThirtyThree;
+local wordsThirtyFour;
+local wordsThirtyFive;
+
+local wordsThirtySix;
+local wordsThirtySeven;
+local wordsThirtyEight;
+local wordsThirtyNine;
+local wordsFourty;
+
+local tmpF = "";
+local tmpN = "";
+local tmpW = "";
+
+-- face creating functions
+
+function changeFace(face)
+	tmpF = face;
+end
+
+function createFace(face)
+
+	changeFace(face);
+
+	local subjectOne = display.newImageRect("storyOne/subjects/"..tmpF..".png", display.contentWidth/2.2, display.contentHeight/3.2);
+	subjectOne.x = display.contentCenterX*1.7;
+	subjectOne.y = display.contentCenterY/1.1;
+	subjectOne.alpha = 0;
+	
+	sceneGroup:insert( subjectOne );
+	
+	return subjectOne;
+end
+
+-- name creating functions
+
+function changeName(name)
+	tmpN = name;
+end
+
+function createName(name)
+
+	changeName(name);
 	
 	local optionsTxtN = {
-		text = ""..tmpName,
+		text = ""..tmpN,
 		x = display.contentCenterX,
 		y = 800,
 		width = display.contentWidth/1.4,
@@ -54,24 +134,131 @@ function createSubjects(scene)
 		align = "center"
 	}
 	
-	subjectName = display.newText(optionsTxtN);
+	local subjectName = display.newText(optionsTxtN);
 	subjectName:setTextColor( 255, 255, 255 );
 	subjectName.alpha = 0;
+	sceneGroup:insert( subjectName );
 	
-	subjectTxt = display.newText(optionsTxtW);
-	subjectTxt:setTextColor( 0, 0, 0 );
-	subjectTxt.alpha = 0;
+	return subjectName;
+end
+
+-- text creating functions
+
+function changeWords(words)
+	tmpW = words;
+end
+
+function createWords(words)
+
+	changeWords(words);
 	
-	scene:insert( subject );
+	local optionsTxtW = {
+		text = ""..tmpW,
+		x = display.contentCenterX-45,
+		y = display.contentHeight/1.4,
+		width = display.contentWidth/1.4,
+		height = display.contentHeight/3.8,
+		font = native.systemFontBold,
+		fontSize = 46,
+		align = "center"
+	}
+	
+	local subjectWords = display.newText(optionsTxtW);
+	subjectWords:setTextColor( 0, 0, 0 );
+	subjectWords.alpha = 0;
+	sceneGroup:insert( subjectWords );
+	
+	return subjectWords;
+end
+
+
+function createSubjects(scene)
+	
+	bgText = display.newImageRect("bgText.png", display.contentWidth, display.contentHeight/3.2);
+	bgText.x = display.contentCenterX;
+	bgText.y = display.contentCenterY*1.4;
+	bgText.alpha = 0;
+	
+	bgName = display.newImageRect("nameBG.png", display.contentWidth/2.4, display.contentHeight/8.5);
+	bgName.x = display.contentCenterX;
+	bgName.y = 680;
+	bgName.alpha = 0;
+	
+	scene:insert( bgName );
+	
+	-- ______________________________SUBJ_FACES_______________________________________________________________	
+	
+	faceOne = createFace("1-1");
+	faceTwo = createFace("2-2");
+	faceThree = createFace("2-3");
+	faceFour = createFace("3-1");
+	faceFive = createFace("3-2");
+	
+	faceSix = createFace("4-1");
+	faceSeven = createFace("4-3");
+	faceEight = createFace("5-1");
+	faceNine = createFace("5-3");
+	faceTen = createFace("6-1");
+	
+	faceEleven = createFace("6-3");
+	
+	-- background for text
 	
 	scene:insert( bgText );
-	scene:insert( subjectName );
-	scene:insert( subjectTxt );
+	-- ______________________________SUBJ_NAMES_______________________________________________________________
 	
-	transition.to( subject, { time=1000, alpha=1 });
-	transition.to( subjectName, { time=1000, alpha=1 });
-	transition.to( subjectTxt, { time=1000, alpha=1 });
-	transition.to( bgText, { time=1000, alpha=1 });
+	nameOne = createName("Дони");
+	nameTwo = createName("Алекс");
+	nameThree = createName("Муни");
+	
+	nameFour = createName("Дэн");
+	nameFive = createName("Уил");
+	nameSix = createName("Жули");
+	-- ______________________________SUBJ_TEEEXT______________________________________________________________
+	
+	wordsOne = createWords("Надеюсь с самолетом ничего не случится");
+	wordsTwo = createWords("и нам не придется пробираться в город через Джунгли.");
+	wordsThree = createWords("Я смогу провести нас обратно,");
+	wordsFour = createWords("главное, чтобы вы не создавали проблем.");
+	wordsFive = createWords("Мой вертолет сможет забрать меня в любое время,");
+	wordsSix = createWords("но на борту только три места. Придется подкидывать монетку. Ха-ха.");
+	wordsSeven = createWords("До этого не дойдет.");
+	wordsEight = createWords("Доктор Муни изучил затерянный город инков на протяжении многих лет,");
+	wordsNine = createWords("проблем не должно возникнуть, верно Док?");
+	wordsTen = createWords("Я бы не спешил с выводами, Алекс.");
+	
+	wordsEleven = createWords("Не стоит забывать сражение у Теохакаса,");
+	wordsTwelve = createWords("которое состоялось в 1534 году,");
+	wordsThirteen = createWords("когда испанские завоеватели пришли на эти земли.");
+	wordsFourteen = createWords("Древнее племя понимало,");
+	wordsFifteen = createWords("что не может противостоять военному превосходству испанцев,");
+	wordsSixteen = createWords("поэтому индейцы придумали хитроумные ловушки,");
+	wordsSeventeen = createWords("чтобы сдержать армию Гонсало Фернандеса.");
+	wordsEighteen = createWords("Будем надеяться, что все ловушки были найдены или заржавели.");
+	wordsNineteen = createWords("Звучит не сильно обнадеживающе.");
+	wordsTwenty = createWords("Помню, в самолете вы упоминали карту, которая приведет нас к сокровищам.");
+	
+	wordsTwentyOne = createWords("Карта должна быть в первом зале Храма.");
+	wordsTwentyTwo = createWords("Последняя экспедиция, которая отправилась на поиски сокровищ,");
+	wordsTwentyThree = createWords("под руководством голландского мореплавателя Ван Дер Поля, потерпела фиаско.");
+	wordsTwentyFour = createWords("Никто не вернулся из путешествия.");
+	wordsTwentyFive = createWords("Очередная радостная история.");
+	wordsTwentySix = createWords("Ден, а ты что думаешь?");
+	wordsTwentySeven = createWords("Я впервые в этих краях,");
+	wordsTwentyEight = createWords("мистер Уил щедро платит за работу.");
+	wordsTwentyNine = createWords("Почему бы не рискнуть?");
+	wordsThirty = createWords("Мне нравится твой подход.");
+	
+	wordsThirtyOne = createWords("Если потеряешь руку и не сможешь пилотировать самолет,");
+	wordsThirtyTwo = createWords("приглашаю быть у меня помощником.");
+	wordsThirtyThree = createWords("Спасибо, но я и без рук смогу поднять свою птичку в небо.");
+	wordsThirtyFour = createWords("К Храму ведет несколько тропинок.");
+	wordsThirtyFive = createWords("Какая из них выведет нас к цели быстрее?");
+	wordsThirtySix = createWords("Я изучал картографию практически всю свою жизнь.");
+	wordsThirtySeven = createWords("К храму можно добраться десятком путей.");
+	wordsThirtyEight = createWords("Но самый безопасный и быстрый лежит через деревню инков.");
+	wordsThirtyNine = createWords("Только вопрос: как мы пойдем, через деревню или обойдем ее?");
+	
 end
 
 function createAll(scene)
@@ -83,31 +270,269 @@ function createAll(scene)
 	backBtn.x = 80;
 	backBtn.y = 80;
 	
-	
+	if check == 1 then
+		clickBox.x = display.contentCenterX;
+	end
 	
 	scene:insert( background );
 	scene:insert( backBtn );
+	
+	createSubjects(sceneGroup);
+end
+
+-- tell them story
+
+function changeAlpha()
+	
+	count = count + 1;
+	print(count);
+	
+	if count == 2 then
+		wordsOne.alpha = 0;
+		wordsTwo.alpha = 1;
+	end
+	if count == 3 then
+		faceSix.alpha = 0;
+		faceEight.alpha = 1;
+		
+		nameFour.alpha = 0;
+		nameOne.alpha = 1;
+		
+		wordsTwo.alpha = 0;
+		wordsThree.alpha = 1;
+	end
+	if count == 4 then
+		wordsThree.alpha = 0;
+		wordsFour.alpha = 1;
+	end
+	if count == 5 then
+		faceEight.alpha = 0;
+		faceTen.alpha = 1;
+		
+		nameOne.alpha = 0;
+		nameFive.alpha = 1;
+		
+		wordsFour.alpha = 0;
+		wordsFive.alpha = 1;
+	end
+	if count == 6 then
+		faceTen.alpha = 0;
+		faceEleven.alpha = 1;
+	
+		wordsFive.alpha = 0;
+		wordsSix.alpha = 1;
+	end
+	if count == 7 then
+		faceEleven.alpha = 0;
+		faceOne.alpha = 1;
+		
+		nameFive.alpha = 0;
+		nameTwo.alpha = 1;
+		
+		wordsSix.alpha = 0;
+		wordsSeven.alpha = 1;
+	end
+	if count == 8 then
+		wordsSeven.alpha = 0;
+		wordsEight.alpha = 1;	
+	end
+	if count == 9 then
+		wordsEight.alpha = 0;
+		wordsNine.alpha = 1;
+	end
+	if count == 10 then
+		faceOne.alpha = 0;
+		faceFour.alpha = 1;
+		
+		nameTwo.alpha = 0;
+		nameThree.alpha = 1;
+		
+		wordsNine.alpha = 0;
+		wordsTen.alpha = 1;
+	end
+	if count == 11 then
+		wordsTen.alpha = 0;
+		wordsEleven.alpha = 1;
+	end
+	if count == 12 then
+		wordsEleven.alpha = 0;
+		wordsTwelve.alpha = 1;
+	end
+	if count == 13 then
+		wordsTwelve.alpha = 0;
+		wordsThirteen.alpha = 1;
+	end
+	if count == 14 then
+		wordsThirteen.alpha = 0;
+		wordsFourteen.alpha = 1;
+	end
+	if count == 15 then
+		wordsFourteen.alpha = 0;
+		wordsFifteen.alpha = 1;
+	end
+	if count == 16 then
+		wordsFifteen.alpha = 0;
+		wordsSixteen.alpha = 1;
+	end
+	if count == 17 then
+		wordsSixteen.alpha = 0;
+		wordsSeventeen.alpha = 1;
+	end
+	if count == 18 then
+		wordsSeventeen.alpha = 0;
+		wordsEighteen.alpha = 1;
+	end
+	if count == 19 then
+		faceFour.alpha = 0;
+		faceThree.alpha = 1;
+		
+		nameThree.alpha = 0;
+		nameSix.alpha = 1;
+		
+		wordsEighteen.alpha = 0;
+		wordsNineteen.alpha = 1;
+	end
+	if count == 20 then
+		faceThree.alpha = 0;
+		faceTwo.alpha = 1;
+	
+		wordsNineteen.alpha = 0;
+		wordsTwenty.alpha = 1;
+	end
+	if count == 21 then
+		faceTwo.alpha = 0;
+		faceFour.alpha = 1;
+		
+		nameSix.alpha = 0;
+		nameThree.alpha = 1;
+	
+		wordsTwenty.alpha = 0;
+		wordsTwentyOne.alpha = 1;
+	end
+	if count == 22 then
+		wordsTwentyOne.alpha = 0;
+		wordsTwentyTwo.alpha = 1;
+	end
+	if count == 23 then
+		wordsTwentyTwo.alpha = 0;
+		wordsTwentyThree.alpha = 1;
+	end
+	if count == 24 then
+		wordsTwentyThree.alpha = 0;
+		wordsTwentyFour.alpha = 1;
+	end
+	if count == 25 then
+		faceFour.alpha = 0;
+		faceThree.alpha = 1;
+		
+		nameThree.alpha = 0;
+		nameSix.alpha = 1;
+	
+		wordsTwentyFour.alpha = 0;
+		wordsTwentyFive.alpha = 1;
+	end
+	if count == 26 then
+		faceThree.alpha = 0;
+		faceOne.alpha = 1;
+		
+		nameSix.alpha = 0;
+		nameTwo.alpha = 1;
+	
+		wordsTwentyFive.alpha = 0;
+		wordsTwentySix.alpha = 1;
+	end
+	if count == 27 then
+		faceOne.alpha = 0;
+		faceSix.alpha = 1;
+		
+		nameTwo.alpha = 0;
+		nameFour.alpha = 1;
+		
+		wordsTwentySix.alpha = 0;
+		wordsTwentySeven.alpha = 1;
+	end
+	if count == 28 then
+		wordsTwentySeven.alpha = 0;
+		wordsTwentyEight.alpha = 1;
+	end
+	if count == 29 then
+		wordsTwentyEight.alpha = 0;
+		wordsTwentyNine.alpha = 1;
+	end
+	if count == 30 then
+		faceSix.alpha = 0;
+		faceNine.alpha = 1;
+		
+		nameFour.alpha = 0;
+		nameOne.alpha = 1;
+		
+		wordsTwentyNine.alpha = 0;
+		wordsThirty.alpha = 1;
+	end
+	if count == 31 then
+		wordsThirty.alpha = 0;
+		wordsThirtyOne.alpha = 1;
+	end
+	if count == 32 then
+		wordsThirtyOne.alpha = 0;
+		wordsThirtyTwo.alpha = 1;
+	end
+	if count == 33 then
+		faceNine.alpha = 0;
+		faceSeven.alpha = 1;
+		
+		nameOne.alpha = 0;
+		nameFour.alpha = 1;
+	
+		wordsThirtyTwo.alpha = 0;
+		wordsThirtyThree.alpha = 1;
+	end
+	if count == 34 then
+		faceSeven.alpha = 0;
+		faceOne.alpha = 1;
+		
+		nameFour.alpha = 0;
+		nameTwo.alpha = 1;
+	
+		wordsThirtyThree.alpha = 0;
+		wordsThirtyFour.alpha = 1;
+	end
+	if count == 35 then
+		wordsThirtyFour.alpha = 0;
+		wordsThirtyFive.alpha = 1;
+	end
+	if count == 36 then
+		faceOne.alpha = 0;
+		faceFour.alpha = 1;
+		
+		nameTwo.alpha = 0;
+		nameThree.alpha = 1;
+	
+		wordsThirtyFive.alpha = 0;
+		wordsThirtySix.alpha = 1;
+	end
+	if count == 37 then
+		wordsThirtySix.alpha = 0;
+		wordsThirtySeven.alpha = 1;
+	end
+	if count == 38 then
+		wordsThirtySeven.alpha = 0;
+		wordsThirtyEight.alpha = 1;
+	end
+	if count == 39 then
+		wordsThirtyEight.alpha = 0;
+		wordsThirtyNine.alpha = 1;
+		-- timer.cancel(Timer);
+		clickBox.x = display.contentCenterX*4;
+	end
+	
 end
 
 -- go to another scene
 
 function onBackBtn()
+	check = 1;
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
-end
-
-function deleteAll()
-	if background then
-		background:removeSelf();
-		background = nil;
-	end
-	if backBtn then
-		backBtn:removeSelf();
-		backBtn = nil;
-	end
-	if subjects then
-		subjects:removeSelf();
-		subjects = nil;
-	end
 end
 
 -----------------------------------------------------------------------------------------
@@ -122,19 +547,32 @@ function scene:show( event )
 	local phase = event.phase;
 	
 	if phase == "will" then
-
 	elseif phase == "did" then
 		backBtn:addEventListener('tap', onBackBtn);
-		timer.performWithDelay( 1000, createSubjects(sceneGroup) );
+		--Timer = timer.performWithDelay( 5000, changeAlpha, -1);
+		
+		if bgText.alpha == 0 then
+			transition.to( faceSix, { time=1500, alpha=1 });
+			transition.to( nameFour, { time=1500, alpha=1 });
+			transition.to( wordsOne, { time=1500, alpha=1 });
+			transition.to( bgText, { time=1500, alpha=1 });
+			transition.to( bgName, { time=1500, alpha=1 });
+		end
 	end
 end
 
 function scene:destroy( event )
 	sceneGroup = self.view;
-	deleteAll();
 end
 
+clickBox = display.newImageRect("nameBG.png", display.contentWidth, display.contentHeight-200);
+clickBox.x = display.contentCenterX;
+clickBox.y = display.contentCenterY + 100;
+
 -- Listener setup
+clickBox:addEventListener('tap', changeAlpha);
+
+
 scene:addEventListener( "create", scene );
 scene:addEventListener( "show", scene );
 scene:addEventListener( "destroy", scene );
