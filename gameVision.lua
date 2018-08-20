@@ -78,6 +78,7 @@ end
 -- go to another scene
 
 function onStoryOne()
+	composer.setVariable( "checkpoint", 1 );
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
 end
 

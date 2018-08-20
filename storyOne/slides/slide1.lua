@@ -2,10 +2,10 @@ local composer = require( "composer" );
 local count = require( "storyOne.gameVisionOne" );
 local scene = composer.newScene();
 
-local check = 0;
 local Timer;
 
 local sceneGroup;
+
 local background;
 local backBtn;
 
@@ -104,8 +104,8 @@ function createFace(face)
 	changeFace(face);
 
 	local subjectOne = display.newImageRect("storyOne/subjects/"..tmpF..".png", display.contentWidth/2.2, display.contentHeight/3.2);
-	subjectOne.x = display.contentCenterX*1.7;
-	subjectOne.y = display.contentCenterY/1.1;
+	subjectOne.x = display.contentCenterX*1.45;
+	subjectOne.y = display.contentCenterY/1.101;
 	subjectOne.alpha = 0;
 	
 	sceneGroup:insert( subjectOne );
@@ -125,8 +125,8 @@ function createName(name)
 	
 	local optionsTxtN = {
 		text = ""..tmpN,
-		x = display.contentCenterX,
-		y = 800,
+		x = display.contentCenterX - 80,
+		y = 860,
 		width = display.contentWidth/1.4,
 		height = display.contentHeight/3.8,
 		font = native.systemFontBold,
@@ -154,8 +154,8 @@ function createWords(words)
 	
 	local optionsTxtW = {
 		text = ""..tmpW,
-		x = display.contentCenterX-45,
-		y = display.contentHeight/1.4,
+		x = display.contentCenterX,
+		y = display.contentHeight/1.32,
 		width = display.contentWidth/1.4,
 		height = display.contentHeight/3.8,
 		font = native.systemFontBold,
@@ -174,14 +174,14 @@ end
 
 function createSubjects(scene)
 	
-	bgText = display.newImageRect("bgText.png", display.contentWidth, display.contentHeight/3.2);
+	bgText = display.newImageRect("bgTextTwo.png", display.contentWidth, display.contentHeight/1.95);
 	bgText.x = display.contentCenterX;
 	bgText.y = display.contentCenterY*1.4;
 	bgText.alpha = 0;
 	
-	bgName = display.newImageRect("nameBG.png", display.contentWidth/2.4, display.contentHeight/8.5);
-	bgName.x = display.contentCenterX;
-	bgName.y = 680;
+	bgName = display.newImageRect("nameBG.png", display.contentWidth/2.2, display.contentHeight/11.6);
+	bgName.x = display.contentCenterX-40;
+	bgName.y = 720;
 	bgName.alpha = 0;
 	
 	scene:insert( bgName );
@@ -270,14 +270,27 @@ function createAll(scene)
 	backBtn.x = 80;
 	backBtn.y = 80;
 	
-	if check == 1 then
-		clickBox.x = display.contentCenterX;
-	end
+	choiceBtnOne = display.newImageRect("btnOne.png", display.contentWidth/2.1, 100);
+	choiceBtnOne.x = display.contentCenterX*3;
+	choiceBtnOne.y = display.contentCenterY*3;
+	
+	choiceBtnTwo = display.newImageRect("btnTwo.png", display.contentWidth/2.1, 100);
+	choiceBtnTwo.x = display.contentCenterX*3;
+	choiceBtnTwo.y = display.contentCenterY*3;
+	
+	clickBox = display.newImageRect("nameBG.png", display.contentWidth, display.contentHeight-200);
+	clickBox.x = display.contentCenterX;
+	clickBox.y = display.contentCenterY + 100;
+	clickBox.alpha = 0;
+	scene:insert( clickBox );
+	clickBox:addEventListener('tap', changeAlpha);
+	--Timer = timer.performWithDelay( 5000, changeAlpha, -1);
 	
 	scene:insert( background );
 	scene:insert( backBtn );
-	
-	createSubjects(sceneGroup);
+	scene:insert( choiceBtnOne );
+	scene:insert( choiceBtnTwo );
+	createSubjects( sceneGroup );
 end
 
 -- tell them story
@@ -523,7 +536,15 @@ function changeAlpha()
 		wordsThirtyEight.alpha = 0;
 		wordsThirtyNine.alpha = 1;
 		-- timer.cancel(Timer);
+		
 		clickBox.x = display.contentCenterX*4;
+		
+		choiceBtnOne.x = display.contentCenterX/2;
+		choiceBtnOne.y = display.contentCenterY*1.8;
+		
+		choiceBtnTwo.x = display.contentCenterX*1.5;
+		choiceBtnTwo.y = display.contentCenterY*1.8;
+		
 	end
 	
 end
@@ -531,10 +552,23 @@ end
 -- go to another scene
 
 function onBackBtn()
-	check = 1;
+	composer.setVariable( "checkpoint", 1 );
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
 end
 
+function onBtnOne()
+	composer.removeScene("storyOne.slides.slide1");
+	composer.gotoScene( "storyOne.slides.slide2", "slideLeft", 800 );
+end
+
+function onBtnTwo()
+	composer.removeScene("storyOne.slides.slide1");
+	composer.gotoScene( "storyOne.slides.slide3", "slideLeft", 800 );
+end
+
+function onTimer()
+	clickBox.alpha = 1;
+end
 -----------------------------------------------------------------------------------------
 
 function scene:create( event )
@@ -549,29 +583,28 @@ function scene:show( event )
 	if phase == "will" then
 	elseif phase == "did" then
 		backBtn:addEventListener('tap', onBackBtn);
-		--Timer = timer.performWithDelay( 5000, changeAlpha, -1);
+		choiceBtnOne:addEventListener('tap', onBtnOne);
+		choiceBtnTwo:addEventListener('tap', onBtnTwo);
 		
-		if bgText.alpha == 0 then
+		if count == 1 then
 			transition.to( faceSix, { time=1500, alpha=1 });
 			transition.to( nameFour, { time=1500, alpha=1 });
 			transition.to( wordsOne, { time=1500, alpha=1 });
 			transition.to( bgText, { time=1500, alpha=1 });
 			transition.to( bgName, { time=1500, alpha=1 });
+			local tm = timer.performWithDelay( 1500, onTimer );
 		end
 	end
 end
 
 function scene:destroy( event )
 	sceneGroup = self.view;
+	clickBox:removeEventListener('tap', changeAlpha);
+	choiceBtnOne:removeEventListener('tap', onBtnOne);
+	choiceBtnTwo:removeEventListener('tap', onBtnTwo);
 end
 
-clickBox = display.newImageRect("nameBG.png", display.contentWidth, display.contentHeight-200);
-clickBox.x = display.contentCenterX;
-clickBox.y = display.contentCenterY + 100;
-
 -- Listener setup
-clickBox:addEventListener('tap', changeAlpha);
-
 
 scene:addEventListener( "create", scene );
 scene:addEventListener( "show", scene );

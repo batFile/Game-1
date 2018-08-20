@@ -8,6 +8,9 @@ local title;
 local partOne;
 local partTwo;
 local partThree;
+local partFour;
+local partFive;
+local partSix;
 
 local backBtn;
 
@@ -32,6 +35,18 @@ function createAll(scene)
 	partThree.x = display.contentCenterX;
 	partThree.y = display.contentCenterY+20;
 	
+	partFour = display.newImageRect("partOne.png", 460, 200);
+	partFour.x = display.contentCenterX;
+	partFour.y = display.contentCenterY*1.23;
+	
+	partFive = display.newImageRect("partTwo.png", 460, 200);
+	partFive.x = display.contentCenterX;
+	partFive.y = display.contentCenterY*1.43;
+	
+	partSix = display.newImageRect("partThree.png", 460, 200);
+	partSix.x = display.contentCenterX;
+	partSix.y = display.contentCenterY*1.6;
+		
 	backBtn = display.newImageRect("back.png", 200, 200);
 	backBtn.x = display.contentCenterX+200;
 	backBtn.y = display.contentCenterY*1.8;
@@ -41,6 +56,9 @@ function createAll(scene)
 	scene:insert( partOne );
 	scene:insert( partTwo );
 	scene:insert( partThree );
+	scene:insert( partFour );
+	scene:insert( partFive );
+	scene:insert( partSix );
 	scene:insert( backBtn );
 end
 
@@ -58,35 +76,20 @@ function onPartThree()
 	composer.gotoScene( "storyOne.slides.slide3", "fade", 800 );
 end
 
-function onBackBtn()
-	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
+function onPartFour()
+	composer.gotoScene( "storyOne.slides.slide4", "fade", 800 );
 end
 
-function deleteAll()
-	if background then
-		background:removeSelf();
-		background = nil;
-	end
-	if title then
-		title:removeSelf();
-		title = nil;
-	end
-	if partOne then
-		partOne:removeSelf();
-		partOne = nil;
-	end
-	if partTwo then
-		partTwo:removeSelf();
-		partTwo = nil;
-	end
-	if partThree then
-		partThree:removeSelf();
-		partThree = nil;
-	end
-	if backBtn then
-		backBtn:removeSelf();
-		backBtn = nil;
-	end
+function onPartFive()
+	composer.gotoScene( "storyOne.slides.slide5", "fade", 800 );
+end
+
+function onPartSix()
+	composer.gotoScene( "storyOne.slides.slide6", "fade", 800 );
+end
+
+function onBackBtn()
+	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
 end
 
 -----------------------------------------------------------------------------------------
@@ -106,13 +109,16 @@ function scene:show( event )
 		partOne:addEventListener('tap', onPartOne);
 		partTwo:addEventListener('tap', onPartTwo);
 		partThree:addEventListener('tap', onPartThree);
+		-- partFour:addEventListener('tap', onPartFour);
+		-- partFive:addEventListener('tap', onPartFive);
+		-- partSix:addEventListener('tap', onPartSix);
 		backBtn:addEventListener('tap', onBackBtn);
 	end	
 end
 
 function scene:destroy( event )
 	sceneGroup = self.view;
-	deleteAll();
+
 end
 
 -- Listener setup

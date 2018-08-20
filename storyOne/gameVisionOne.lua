@@ -82,7 +82,8 @@ function onChoosePart()
 end
 
 function onPlayBtn()
-	composer.gotoScene( "storyOne.slides.slide1", "fade", 800 );
+	local tmp = composer.getVariable( "checkpoint" );
+	composer.gotoScene( "storyOne.slides.slide"..tmp, "fade", 800 );
 end
 
 -- close game Part
