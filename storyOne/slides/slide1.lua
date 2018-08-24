@@ -553,6 +553,7 @@ end
 
 function onBackBtn()
 	composer.setVariable( "checkpoint", 1 );
+	composer.setVariable( "count", count );
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
 end
 

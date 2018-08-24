@@ -23,30 +23,18 @@ function createAll(scene)
 	title.x = display.contentCenterX;
 	title.y = display.contentCenterY/5.4;
 	
-	partOne = display.newImageRect("partOne.png", 460, 200);
+	partOne = display.newImageRect("achivments/Locked.png", 500, 150);
 	partOne.x = display.contentCenterX;
-	partOne.y = display.contentCenterY/1.65;
+	partOne.y = display.contentCenterY/1.75;
 	
-	partTwo = display.newImageRect("partTwo.png", 460, 200);
+	partTwo = display.newImageRect("achivments/Locked.png", 500, 150);
 	partTwo.x = display.contentCenterX;
 	partTwo.y = display.contentCenterY/1.22;
 	
-	partThree = display.newImageRect("partThree.png", 460, 200);
+	partThree = display.newImageRect("achivments/Locked.png", 500, 150);
 	partThree.x = display.contentCenterX;
-	partThree.y = display.contentCenterY+20;
+	partThree.y = display.contentCenterY+45;
 	
-	partFour = display.newImageRect("partOne.png", 460, 200);
-	partFour.x = display.contentCenterX;
-	partFour.y = display.contentCenterY*1.23;
-	
-	partFive = display.newImageRect("partTwo.png", 460, 200);
-	partFive.x = display.contentCenterX;
-	partFive.y = display.contentCenterY*1.43;
-	
-	partSix = display.newImageRect("partThree.png", 460, 200);
-	partSix.x = display.contentCenterX;
-	partSix.y = display.contentCenterY*1.6;
-		
 	backBtn = display.newImageRect("back.png", 200, 200);
 	backBtn.x = display.contentCenterX+200;
 	backBtn.y = display.contentCenterY*1.8;
@@ -56,37 +44,10 @@ function createAll(scene)
 	scene:insert( partOne );
 	scene:insert( partTwo );
 	scene:insert( partThree );
-	scene:insert( partFour );
-	scene:insert( partFive );
-	scene:insert( partSix );
 	scene:insert( backBtn );
 end
 
 -- go to another scene
-
-function onPartOne()
-	composer.gotoScene( "storyOne.slides.slide1", "fade", 800 );
-end
-
-function onPartTwo()
-	composer.gotoScene( "storyOne.slides.slide2", "fade", 800 );
-end
-
-function onPartThree()
-	composer.gotoScene( "storyOne.slides.slide3", "fade", 800 );
-end
-
-function onPartFour()
-	composer.gotoScene( "storyOne.slides.slide4", "fade", 800 );
-end
-
-function onPartFive()
-	composer.gotoScene( "storyOne.slides.slide5", "fade", 800 );
-end
-
-function onPartSix()
-	composer.gotoScene( "storyOne.slides.slide6", "fade", 800 );
-end
 
 function onBackBtn()
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
@@ -106,12 +67,6 @@ function scene:show( event )
 	if phase == "will" then
 
 	elseif phase == "did" then
-		partOne:addEventListener('tap', onPartOne);
-		partTwo:addEventListener('tap', onPartTwo);
-		partThree:addEventListener('tap', onPartThree);
-		-- partFour:addEventListener('tap', onPartFour);
-		-- partFive:addEventListener('tap', onPartFive);
-		-- partSix:addEventListener('tap', onPartSix);
 		backBtn:addEventListener('tap', onBackBtn);
 	end	
 end

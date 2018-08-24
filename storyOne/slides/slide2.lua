@@ -87,6 +87,7 @@ local tmpF = "";
 local tmpN = "";
 local tmpW = "";
 
+local achiv;
 -- face creating functions
 
 function changeFace(face)
@@ -275,15 +276,29 @@ function createAll(scene)
 	clickBox:addEventListener('tap', changeAlpha);
 	--Timer = timer.performWithDelay( 5000, changeAlpha, -1);
 	
+	achiv = display.newImageRect("achivments/Hack.png", 700, 200);
+	achiv.x = display.contentCenterX;
+	achiv.y = display.contentCenterY - 350;
+	achiv.alpha = 0;
+	
 	scene:insert( background );
 	scene:insert( backBtn );
 	scene:insert( choiceBtnOne );
 	scene:insert( choiceBtnTwo );
 	scene:insert( choiceBtnThree );
 	createSubjects(sceneGroup);
+	scene:insert( achiv );
 end
 
 -- tell them story
+
+function onAchiv()
+	achiv.alpha = 1;
+end
+
+function onAchivEnd()
+	transition.to( achiv, { time=2500, alpha=0 });
+end
 
 function changeAlpha()
 	
@@ -417,6 +432,9 @@ function changeAlpha()
 	
 		wordsSeventeen.alpha = 0;
 		wordsEighteen.alpha = 1;
+		
+		onAchiv();
+		local tm = timer.performWithDelay( 3500, onAchivEnd );
 	end
 	if count == 19 then
 		faceEight.alpha = 0;
@@ -567,6 +585,7 @@ end
 
 function onBackBtn()
 	composer.setVariable( "checkpoint", 2 );
+	composer.setVariable( "count", count );
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
 end
 
@@ -602,9 +621,9 @@ function scene:show( event )
 	if phase == "will" then
 	elseif phase == "did" then
 		backBtn:addEventListener('tap', onBackBtn);
-		-- choiceBtnOne:addEventListener('tap', onBtnOne);
-		-- choiceBtnTwo:addEventListener('tap', onBtnTwo);
-		-- choiceBtnThree:addEventListener('tap', onBtnThree);
+		choiceBtnOne:addEventListener('tap', onBtnOne);
+		choiceBtnTwo:addEventListener('tap', onBtnTwo);
+		choiceBtnThree:addEventListener('tap', onBtnThree);
 		
 		if bgText.alpha == 0 then
 			transition.to( faceEleven, { time=1500, alpha=1 });
@@ -614,6 +633,7 @@ function scene:show( event )
 			transition.to( bgName, { time=1500, alpha=1 });
 			local tm = timer.performWithDelay( 1500, onTimer );
 		end
+		
 	end
 end
 

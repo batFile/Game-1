@@ -14,7 +14,10 @@ local closeBtn;
 local congBlock;
 local closeConf;
 
+local tmp = composer.getVariable( "startCheckpoint" );
+
 function createAll(scene)
+	
 	background = display.newImageRect("1b.jpg", display.contentWidth, display.contentHeight);
 	background.x = display.contentCenterX;
 	background.y = display.contentCenterY;
@@ -31,7 +34,7 @@ function createAll(scene)
 	playBtn.x = display.contentCenterX;
 	playBtn.y = display.contentCenterY*1.3;
 	
-	choosePart = display.newImageRect("parts.png", 460, 200);
+	choosePart = display.newImageRect("achiv.png", 460, 200);
 	choosePart.x = display.contentCenterX;
 	choosePart.y = display.contentCenterY*1.53;
 	
@@ -81,14 +84,40 @@ function onChoosePart()
 	composer.gotoScene( "storyOne.parts", "fade", 800 );
 end
 
+function reWriteData(saveData)
+	local path = system.pathForFile("part.txt", system.ResourceDirectory);
+	local file = io.open( path, "w" );
+	file:write( saveData );
+	io.close( file );
+end
+
+function reWriteDataCount(saveData)
+	local path = system.pathForFile("count.txt", system.ResourceDirectory);
+	local file = io.open( path, "w" );
+	file:write( saveData );
+	io.close( file );
+end
+
 function onPlayBtn()
-	local tmp = composer.getVariable( "checkpoint" );
-	composer.gotoScene( "storyOne.slides.slide"..tmp, "fade", 800 );
+	local tmpT = composer.getVariable( "checkpoint" );
+	if tmp == 0 or tmpT < tmp then
+		composer.gotoScene( "storyOne.slides.slide"..tmpT, "fade", 800 );
+	else
+		composer.gotoScene( "storyOne.slides.slide"..tmp, "fade", 800 );
+	end
 end
 
 -- close game Part
 
 function closeapp()
+	
+	-- rewrite data
+	
+	tmp = composer.getVariable( "checkpoint" );
+	local tmpC = composer.getVariable( "count" );
+	reWriteData(tmp);
+	reWriteDataCount(tmpC);
+	
     if  system.getInfo("platformName")=="Android" then
 		native.requestExit()
     else
