@@ -24,8 +24,9 @@ end
 createWords(fileO, lines);
 createWords(fileT, linesT);
 
+print(lines[1]);
+
 composer.setVariable( "startCheckpoint", lines[1] );
 composer.setVariable( "startCount", linesT[1] );
-
-
+	
 composer.gotoScene( "menu" );

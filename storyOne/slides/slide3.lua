@@ -560,7 +560,7 @@ function changeAlpha()
 		wordsThirtyOne.alpha = 0;
 		wordsThirtyTwo.alpha = 1;
 		
-		clickBox.x = display.contentCenterX*4;
+		clickBox.alpha = 0;
 		
 		choiceBtnOne.x = display.contentCenterX/2.4;
 		choiceBtnOne.y = display.contentCenterY*1.8;

@@ -282,6 +282,7 @@ function createAll(scene)
 	clickBox.x = display.contentCenterX;
 	clickBox.y = display.contentCenterY + 100;
 	clickBox.alpha = 0;
+	
 	scene:insert( clickBox );
 	clickBox:addEventListener('tap', changeAlpha);
 	--Timer = timer.performWithDelay( 5000, changeAlpha, -1);
@@ -299,6 +300,10 @@ function changeAlpha()
 	
 	count = count + 1;
 	print(count);
+	
+	if count > 1 then
+		wordsOne.alpha = 0;
+	end
 	
 	if count == 2 then
 		wordsOne.alpha = 0;
@@ -537,7 +542,7 @@ function changeAlpha()
 		wordsThirtyNine.alpha = 1;
 		-- timer.cancel(Timer);
 		
-		clickBox.x = display.contentCenterX*4;
+		clickBox.alpha = 0;
 		
 		choiceBtnOne.x = display.contentCenterX/2;
 		choiceBtnOne.y = display.contentCenterY*1.8;
@@ -570,6 +575,7 @@ end
 function onTimer()
 	clickBox.alpha = 1;
 end
+
 -----------------------------------------------------------------------------------------
 
 function scene:create( event )
@@ -593,7 +599,7 @@ function scene:show( event )
 			transition.to( wordsOne, { time=1500, alpha=1 });
 			transition.to( bgText, { time=1500, alpha=1 });
 			transition.to( bgName, { time=1500, alpha=1 });
-			local tm = timer.performWithDelay( 1500, onTimer );
+			local tm = timer.performWithDelay( 2500, onTimer );
 		end
 	end
 end

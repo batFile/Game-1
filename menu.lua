@@ -3,34 +3,30 @@ local scene = composer.newScene();
 
 local sceneGroup;
 local background;
+local title;
 local playBtn;
 
 function createAll(scene)
-	background = display.newImageRect("aztecBG.png", display.contentHeight, display.contentHeight);
+	background = display.newImageRect("1b.jpg", display.contentHeight, display.contentHeight);
 	background.x = display.contentCenterX;
 	background.y = display.contentCenterY;
 	
-	playBtn = display.newImageRect("buttonP.png", 400, 400);
+	title = display.newImageRect("titleTestNine.png", 600, 500);
+	title.x = display.contentCenterX+40;
+	title.y = display.contentCenterY/1.2;
+	
+	playBtn = display.newImageRect("buttonP.png", 240, 240);
 	playBtn.x = display.contentCenterX;
-	playBtn.y = display.contentCenterY;
+	playBtn.y = display.contentCenterY + 200;
+	
 	
 	scene:insert( background );
+	scene:insert( title );
 	scene:insert( playBtn );
 end
 
 function onPlayBtn()
 	composer.gotoScene( "gameVision", "fade", 1200 );
-end
-
-function deleteAll()
-	if background then
-		background:removeSelf();
-		background = nil;
-	end
-	if playBtn then
-		playBtn:removeSelf();
-		playBtn = nil;
-	end
 end
 
 -----------------------------------------------------------------------------------------
@@ -53,7 +49,6 @@ end
 
 function scene:destroy( event )
 	sceneGroup = self.view;
-	deleteAll();
 end
 
 -- Listener setup

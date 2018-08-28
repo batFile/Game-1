@@ -10,6 +10,9 @@ local storyOne;
 local storyTwo;
 local conf;
 local closeBtn;
+local resetBtn;
+local checkR = false;
+
 
 local congBlock;
 local closeConf;
@@ -43,13 +46,17 @@ function createAll(scene)
 	closeBtn.x = display.contentCenterX+200;
 	closeBtn.y = display.contentCenterY*1.8;
 	
-	congBlock = display.newImageRect("UNDER-CONSTRUCTION.png", 800, 600);
+	congBlock = display.newImageRect("confBlockBG.jpg", 600, 600);
 	congBlock.x = display.contentCenterX*4;
 	congBlock.y = display.contentCenterY;
 	
 	closeConf = display.newImageRect("exitBtn.png", 100, 100);
 	closeConf.x = display.contentCenterX*4;
 	closeConf.y = display.contentCenterY/1.4;
+	
+	resetBtn = display.newImageRect("reset.png", 250, 250);
+	resetBtn.x = display.contentCenterX*4;
+	resetBtn.y = display.contentCenterY/1.2;
 	
 	scene:insert( background );
 	scene:insert( content );
@@ -61,6 +68,7 @@ function createAll(scene)
 	
 	scene:insert( congBlock );
 	scene:insert( closeConf );
+	scene:insert( resetBtn );
 end
 
 -- open, close config part (music, sounds, achivments)
@@ -68,18 +76,27 @@ end
 function onConf()
 	congBlock.x = display.contentCenterX;
 	closeConf.x = display.contentCenterX+150;
+	resetBtn.x = display.contentCenterX;
+	storyOne:removeEventListener('tap', onStoryOne);
 end
 
 function onCloseConf()
 	congBlock.x = display.contentCenterX*4;
 	closeConf.x = display.contentCenterX*4;
+	resetBtn.x = display.contentCenterX*4;
+	storyOne:addEventListener('tap', onStoryOne);
 end
 
 -- go to another scene
 
 function onStoryOne()
+	composer.setVariable( "reset", checkR );
 	composer.setVariable( "checkpoint", 1 );
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
+end
+
+function onReset()
+	checkR = true;
 end
 
 -- close game Part
@@ -92,50 +109,12 @@ function closeapp()
     end
 end
 
-function deleteAll()
-	if background then
-		background:removeSelf();
-		background = nil;
-	end
-	if title then
-		title:removeSelf();
-		title = nil;
-	end
-	if content then
-		content:removeSelf();
-		content = nil;
-	end
-	if storyOne then
-		storyOne:removeSelf();
-		storyOne = nil;
-	end
-	if storyTwo then
-		storyTwo:removeSelf();
-		storyTwo = nil;
-	end
-	if conf then
-		conf:removeSelf();
-		conf = nil;
-	end
-	if congBlock then
-		congBlock:removeSelf();
-		congBlock = nil;
-	end
-	if closeConf then
-		closeConf:removeSelf();
-		closeConf = nil;
-	end
-	if closeBtn then
-		closeBtn:removeSelf();
-		closeBtn = nil;
-	end
-end
-
 -----------------------------------------------------------------------------------------
 
 function scene:create( event )
 	sceneGroup = self.view;
 	createAll(sceneGroup);
+	storyOne:addEventListener('tap', onStoryOne);
 end
 
 function scene:show( event )
@@ -147,14 +126,12 @@ function scene:show( event )
 	elseif phase == "did" then
 		conf:addEventListener( "tap", onConf );
 		closeConf:addEventListener( "tap", onCloseConf );
-		storyOne:addEventListener('tap', onStoryOne);
 		closeBtn:addEventListener( "tap", closeapp );
 	end	
 end
 
 function scene:destroy( event )
 	sceneGroup = self.view;
-	deleteAll();
 end
 
 -- Listener setup

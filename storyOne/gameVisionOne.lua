@@ -13,8 +13,12 @@ local closeBtn;
 
 local congBlock;
 local closeConf;
+local resetBtn;
 
 local tmp = composer.getVariable( "startCheckpoint" );
+local tmpR = composer.getVariable( "reset" );
+
+local checkBack = false;
 
 function createAll(scene)
 	
@@ -46,13 +50,20 @@ function createAll(scene)
 	closeBtn.x = display.contentCenterX+200;
 	closeBtn.y = display.contentCenterY*1.8;
 	
-	congBlock = display.newImageRect("UNDER-CONSTRUCTION.png", 800, 600);
+	congBlock = display.newImageRect("confBlockBG.jpg", 800, 600);
 	congBlock.x = display.contentCenterX*4;
 	congBlock.y = display.contentCenterY;
 	
 	closeConf = display.newImageRect("exitBtn.png", 100, 100);
 	closeConf.x = display.contentCenterX*4;
 	closeConf.y = display.contentCenterY/1.4;
+	
+	resetBtn = display.newImageRect("reset.png", 250, 250);
+	resetBtn.x = display.contentCenterX*4;
+	resetBtn.y = display.contentCenterY/1.2;
+	
+	playBtn:addEventListener('tap', onPlayBtn);
+	choosePart:addEventListener('tap', onChoosePart);
 	
 	scene:insert( background );
 	scene:insert( content );
@@ -64,6 +75,7 @@ function createAll(scene)
 	
 	scene:insert( congBlock );
 	scene:insert( closeConf );
+	scene:insert( resetBtn );
 end
 
 -- open, close config part (music, sounds, achivments)
@@ -71,13 +83,22 @@ end
 function onConf()
 	congBlock.x = display.contentCenterX;
 	closeConf.x = display.contentCenterX+150;
+	resetBtn.x = display.contentCenterX;
+	playBtn:removeEventListener('tap', onPlayBtn);
+	choosePart:removeEventListener('tap', onChoosePart);
 end
 
 function onCloseConf()
 	congBlock.x = display.contentCenterX*4;
 	closeConf.x = display.contentCenterX*4;
+	resetBtn.x = display.contentCenterX*4;
+	playBtn:addEventListener('tap', onPlayBtn);
+	choosePart:addEventListener('tap', onChoosePart);
 end
 
+function onReset()
+	tmpR = true;
+end
 -- go to another scene
 
 function onChoosePart()
@@ -100,9 +121,16 @@ end
 
 function onPlayBtn()
 	local tmpT = composer.getVariable( "checkpoint" );
-	if tmp == 0 or tmpT < tmp then
+	
+	if tmpR then
+		tmp = 1;
+		tmpT = 1;
+	end
+	
+	if checkBack then
 		composer.gotoScene( "storyOne.slides.slide"..tmpT, "fade", 800 );
 	else
+		checkBack = true;
 		composer.gotoScene( "storyOne.slides.slide"..tmp, "fade", 800 );
 	end
 end
@@ -180,14 +208,14 @@ function scene:show( event )
 	elseif phase == "did" then
 		conf:addEventListener('tap', onConf);
 		closeConf:addEventListener('tap', onCloseConf);
+		resetBtn:addEventListener('tap', onReset);
 		closeBtn:addEventListener( "tap", closeapp );
-		playBtn:addEventListener('tap', onPlayBtn);
-		choosePart:addEventListener('tap', onChoosePart);
 	end	
 end
 
 function scene:destroy( event )
 	sceneGroup = self.view;
+	tmpR = false;
 	deleteAll();
 end
 
