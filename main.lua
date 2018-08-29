@@ -1,10 +1,13 @@
 local composer = require "composer";
 display.setStatusBar( display.HiddenStatusBar );
-
 local fileO = "part.txt";
 local fileT = "count.txt";
 local lines = {};
 local linesT = {};
+
+local bgmusic = audio.loadStream("bgmusic.mp3");
+
+local backgroundMusicChannel = audio.play( bgmusic, { channel=1, loops=-1} );
 
 local function createWords(fileS, arrayS)
 	local path = system.pathForFile(fileS, system.ResourceDirectory);
