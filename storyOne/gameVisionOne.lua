@@ -20,6 +20,9 @@ local tmpR = composer.getVariable( "reset" );
 
 local checkBack = false;
 
+local clickMusic = audio.loadStream("click.mp3");
+local clickMusicChannel;
+
 function createAll(scene)
 	
 	background = display.newImageRect("1b.jpg", display.contentWidth, display.contentHeight);
@@ -81,6 +84,7 @@ end
 -- open, close config part (music, sounds, achivments)
 
 function onConf()
+	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	congBlock.x = display.contentCenterX;
 	closeConf.x = display.contentCenterX+150;
 	resetBtn.x = display.contentCenterX;
@@ -89,6 +93,7 @@ function onConf()
 end
 
 function onCloseConf()
+	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	congBlock.x = display.contentCenterX*4;
 	closeConf.x = display.contentCenterX*4;
 	resetBtn.x = display.contentCenterX*4;
@@ -97,11 +102,13 @@ function onCloseConf()
 end
 
 function onReset()
+	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	tmpR = true;
 end
 -- go to another scene
 
 function onChoosePart()
+	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	composer.gotoScene( "storyOne.parts", "fade", 800 );
 end
 
@@ -120,6 +127,7 @@ function reWriteDataCount(saveData)
 end
 
 function onPlayBtn()
+	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	local tmpT = composer.getVariable( "checkpoint" );
 	
 	if tmpR then

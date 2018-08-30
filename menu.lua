@@ -6,6 +6,9 @@ local background;
 local title;
 local playBtn;
 
+local clickMusic = audio.loadStream("click.mp3");
+local clickMusicChannel;
+
 function createAll(scene)
 	background = display.newImageRect("1b.jpg", display.contentHeight, display.contentHeight);
 	background.x = display.contentCenterX;
@@ -26,6 +29,7 @@ function createAll(scene)
 end
 
 function onPlayBtn()
+	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	composer.gotoScene( "gameVision", "fade", 1200 );
 end
 

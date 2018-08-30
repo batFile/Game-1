@@ -13,9 +13,11 @@ local closeBtn;
 local resetBtn;
 local checkR = false;
 
-
 local congBlock;
 local closeConf;
+
+local clickMusic = audio.loadStream("click.mp3");
+local clickMusicChannel;
 
 function createAll(scene)
 	background = display.newImageRect("testBG.jpg", display.contentWidth, display.contentHeight);
@@ -74,6 +76,7 @@ end
 -- open, close config part (music, sounds, achivments)
 
 function onConf()
+	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	congBlock.x = display.contentCenterX;
 	closeConf.x = display.contentCenterX+150;
 	resetBtn.x = display.contentCenterX;
@@ -81,6 +84,7 @@ function onConf()
 end
 
 function onCloseConf()
+	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	congBlock.x = display.contentCenterX*4;
 	closeConf.x = display.contentCenterX*4;
 	resetBtn.x = display.contentCenterX*4;
@@ -90,6 +94,7 @@ end
 -- go to another scene
 
 function onStoryOne()
+	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	composer.setVariable( "reset", checkR );
 	composer.setVariable( "checkpoint", 1 );
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
