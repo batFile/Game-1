@@ -6,11 +6,11 @@ local background;
 local title;
 local playBtn;
 
-local clickMusic = audio.loadStream("click.mp3");
-local clickMusicChannel;
+-- local clickMusic = audio.loadStream("click.mp3");
+-- local clickMusicChannel;
 
 function createAll(scene)
-	background = display.newImageRect("1b.jpg", display.contentHeight, display.contentHeight);
+	background = display.newImageRect("1b.jpg", display.contentWidth, display.contentHeight);
 	background.x = display.contentCenterX;
 	background.y = display.contentCenterY;
 	
@@ -18,7 +18,7 @@ function createAll(scene)
 	title.x = display.contentCenterX+40;
 	title.y = display.contentCenterY/1.2;
 	
-	playBtn = display.newImageRect("buttonP.png", 240, 240);
+	playBtn = display.newImageRect("start.png", 240, 240);
 	playBtn.x = display.contentCenterX;
 	playBtn.y = display.contentCenterY + 200;
 	
@@ -29,7 +29,7 @@ function createAll(scene)
 end
 
 function onPlayBtn()
-	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
+	-- clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	composer.gotoScene( "gameVision", "fade", 1200 );
 end
 

@@ -1,5 +1,6 @@
 local composer = require( "composer" );
-local count = require( "storyOne.gameVisionOne" );
+local saver = require( "saving" );
+saver.reWP(2);
 local scene = composer.newScene();
 
 local Timer;
@@ -584,8 +585,8 @@ end
 -- go to another scene
 
 function onBackBtn()
-	composer.setVariable( "checkpoint", 2 );
-	composer.setVariable( "count", count );
+	-- composer.setVariable( "checkpoint", 2 );
+	-- composer.setVariable( "count", count );
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
 end
 
@@ -626,12 +627,12 @@ function scene:show( event )
 		choiceBtnThree:addEventListener('tap', onBtnThree);
 		
 		if bgText.alpha == 0 then
-			transition.to( faceEleven, { time=1500, alpha=1 });
-			transition.to( nameFive, { time=1500, alpha=1 });
-			transition.to( wordsOne, { time=1500, alpha=1 });
-			transition.to( bgText, { time=1500, alpha=1 });
-			transition.to( bgName, { time=1500, alpha=1 });
-			local tm = timer.performWithDelay( 1500, onTimer );
+			transition.to( faceEleven, { time=800, alpha=1 });
+			transition.to( nameFive, { time=800, alpha=1 });
+			transition.to( wordsOne, { time=800, alpha=1 });
+			transition.to( bgText, { time=800, alpha=1 });
+			transition.to( bgName, { time=800, alpha=1 });
+			local tm = timer.performWithDelay( 800, onTimer );
 		end
 		
 	end

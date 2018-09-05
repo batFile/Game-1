@@ -1,5 +1,5 @@
 local composer = require( "composer" );
-
+local saver = require( "saving" );
 local scene = composer.newScene();
 
 local sceneGroup;
@@ -15,13 +15,7 @@ local congBlock;
 local closeConf;
 local resetBtn;
 
-local tmp = composer.getVariable( "startCheckpoint" );
-local tmpR = composer.getVariable( "reset" );
-
 local checkBack = false;
-
-local clickMusic = audio.loadStream("click.mp3");
-local clickMusicChannel;
 
 function createAll(scene)
 	
@@ -81,10 +75,8 @@ function createAll(scene)
 	scene:insert( resetBtn );
 end
 
--- open, close config part (music, sounds, achivments)
-
 function onConf()
-	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
+	-- clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	congBlock.x = display.contentCenterX;
 	closeConf.x = display.contentCenterX+150;
 	resetBtn.x = display.contentCenterX;
@@ -93,7 +85,7 @@ function onConf()
 end
 
 function onCloseConf()
-	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
+	-- clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	congBlock.x = display.contentCenterX*4;
 	closeConf.x = display.contentCenterX*4;
 	resetBtn.x = display.contentCenterX*4;
@@ -102,58 +94,29 @@ function onCloseConf()
 end
 
 function onReset()
-	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
-	tmpR = true;
+	-- clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
+	saver.reWP(1);
+	saver.reWC(1);
+	
+	saver.reWAchOne(0);
+	saver.reWAchTwo(0);
+	saver.reWAchThree(0);
 end
 -- go to another scene
 
 function onChoosePart()
-	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
+	-- clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
 	composer.gotoScene( "storyOne.parts", "fade", 800 );
 end
 
-function reWriteData(saveData)
-	local path = system.pathForFile("part.txt", system.ResourceDirectory);
-	local file = io.open( path, "w" );
-	file:write( saveData );
-	io.close( file );
-end
-
-function reWriteDataCount(saveData)
-	local path = system.pathForFile("count.txt", system.ResourceDirectory);
-	local file = io.open( path, "w" );
-	file:write( saveData );
-	io.close( file );
-end
-
 function onPlayBtn()
-	clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
-	local tmpT = composer.getVariable( "checkpoint" );
-	
-	if tmpR then
-		tmp = 1;
-		tmpT = 1;
-	end
-	
-	if checkBack then
-		composer.gotoScene( "storyOne.slides.slide"..tmpT, "fade", 800 );
-	else
-		checkBack = true;
-		composer.gotoScene( "storyOne.slides.slide"..tmp, "fade", 800 );
-	end
+	local tmp = saver.readPart();
+	composer.gotoScene( "storyOne.slides.slide"..tmp, "fade", 800 );
 end
 
 -- close game Part
 
 function closeapp()
-	
-	-- rewrite data
-	
-	tmp = composer.getVariable( "checkpoint" );
-	local tmpC = composer.getVariable( "count" );
-	reWriteData(tmp);
-	reWriteDataCount(tmpC);
-	
     if  system.getInfo("platformName")=="Android" then
 		native.requestExit()
     else
