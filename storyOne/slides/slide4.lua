@@ -10,7 +10,7 @@ local sceneGroup;
 local background;
 local backBtn;
 
-local count = 1;
+local count = tonumber(saver.readCount());
 
 local clickBox;
 	
@@ -320,6 +320,7 @@ function createAll(scene)
 	clickBox.y = display.contentCenterY + 100;
 	clickBox.alpha = 0;
 	scene:insert( clickBox );
+	
 	clickBox:addEventListener('tap', changeAlpha);
 	clickBox:addEventListener('tap', changeAlphaTwo);
 	--Timer = timer.performWithDelay( 5000, changeAlpha, -1);
@@ -742,20 +743,29 @@ function subFuncChangeAlphaFour()
 	end
 end
 
-function changeAlpha()
-	count = count + 1;
-	print(count);
-	
+function checkAlpha()
 	subFuncChangeAlphaOne();
 	subFuncChangeAlphaTwo();
 	subFuncChangeAlphaThree();
 	subFuncChangeAlphaFour();
 end
 
+function changeAlpha()
+	count = count + 1;
+	
+	subFuncChangeAlphaOne();
+	subFuncChangeAlphaTwo();
+	subFuncChangeAlphaThree();
+	subFuncChangeAlphaFour();
+	
+	saver.reWC(count);
+end
+
 function changeAlphaTwo()
 	if count == 42 then
+		saver.reWC(1);
+		saver.reWP(1);
 		composer.removeScene("storyOne.slides.slide4");
-		composer.setVariable( "checkpoint", 1 );
 		composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
 	end
 end
@@ -786,12 +796,19 @@ function scene:show( event )
 	elseif phase == "did" then
 		backBtn:addEventListener('tap', onBackBtn);
 		
-		if bgText.alpha == 0 then
+		if count == 1 then
 			transition.to( faceFour, { time=800, alpha=1 });
 			transition.to( nameSix, { time=800, alpha=1 });
 			transition.to( wordsOne, { time=800, alpha=1 });
 			transition.to( bgText, { time=800, alpha=1 });
 			transition.to( bgName, { time=800, alpha=1 });
+			local tm = timer.performWithDelay( 800, onTimer );
+		end
+		
+		if count > 1 then
+			checkAlpha();
+			bgText.alpha = 1;
+			bgName.alpha = 1;
 			local tm = timer.performWithDelay( 800, onTimer );
 		end
 	end

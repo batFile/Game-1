@@ -811,11 +811,13 @@ function onBackBtn()
 end
 
 function onBtnOne()
+	saver.reWC(1);
 	composer.removeScene("storyOne.slides.slide1");
 	composer.gotoScene( "storyOne.slides.slide2", "slideLeft", 800 );
 end
 
 function onBtnTwo()
+	saver.reWC(1);
 	composer.removeScene("storyOne.slides.slide1");
 	composer.gotoScene( "storyOne.slides.slide3", "slideLeft", 800 );
 end
