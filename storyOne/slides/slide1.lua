@@ -300,240 +300,194 @@ end
 
 function checkAlpha()
 	if count == 2 then
-		wordsOne.alpha = 0;
+		faceSix.alpha = 1;
+		nameFour.alpha = 1;
 		wordsTwo.alpha = 1;
 	end
 	if count == 3 then
-		faceSix.alpha = 0;
 		faceEight.alpha = 1;
-		
-		nameFour.alpha = 0;
 		nameOne.alpha = 1;
-		
-		wordsTwo.alpha = 0;
 		wordsThree.alpha = 1;
 	end
 	if count == 4 then
-		wordsThree.alpha = 0;
+		faceEight.alpha = 1;
+		nameOne.alpha = 1;
 		wordsFour.alpha = 1;
 	end
 	if count == 5 then
-		faceEight.alpha = 0;
 		faceTen.alpha = 1;
-		
-		nameOne.alpha = 0;
 		nameFive.alpha = 1;
-		
-		wordsFour.alpha = 0;
 		wordsFive.alpha = 1;
 	end
 	if count == 6 then
-		faceTen.alpha = 0;
 		faceEleven.alpha = 1;
-	
-		wordsFive.alpha = 0;
+		nameFive.alpha = 1;
 		wordsSix.alpha = 1;
 	end
 	if count == 7 then
-		faceEleven.alpha = 0;
 		faceOne.alpha = 1;
-		
-		nameFive.alpha = 0;
 		nameTwo.alpha = 1;
-		
-		wordsSix.alpha = 0;
 		wordsSeven.alpha = 1;
 	end
 	if count == 8 then
-		wordsSeven.alpha = 0;
+		faceOne.alpha = 1;
+		nameTwo.alpha = 1;
 		wordsEight.alpha = 1;	
 	end
 	if count == 9 then
-		wordsEight.alpha = 0;
+		faceOne.alpha = 1;
+		nameTwo.alpha = 1;
 		wordsNine.alpha = 1;
 	end
 	if count == 10 then
-		faceOne.alpha = 0;
 		faceFour.alpha = 1;
-		
-		nameTwo.alpha = 0;
 		nameThree.alpha = 1;
-		
-		wordsNine.alpha = 0;
 		wordsTen.alpha = 1;
 	end
 	if count == 11 then
-		wordsTen.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsEleven.alpha = 1;
 	end
 	if count == 12 then
-		wordsEleven.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsTwelve.alpha = 1;
 	end
 	if count == 13 then
-		wordsTwelve.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsThirteen.alpha = 1;
 	end
 	if count == 14 then
-		wordsThirteen.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsFourteen.alpha = 1;
 	end
 	if count == 15 then
-		wordsFourteen.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsFifteen.alpha = 1;
 	end
 	if count == 16 then
-		wordsFifteen.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsSixteen.alpha = 1;
 	end
 	if count == 17 then
-		wordsSixteen.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsSeventeen.alpha = 1;
 	end
 	if count == 18 then
-		wordsSeventeen.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsEighteen.alpha = 1;
 	end
 	if count == 19 then
-		faceFour.alpha = 0;
 		faceThree.alpha = 1;
-		
-		nameThree.alpha = 0;
 		nameSix.alpha = 1;
-		
-		wordsEighteen.alpha = 0;
 		wordsNineteen.alpha = 1;
 	end
 	if count == 20 then
-		faceThree.alpha = 0;
 		faceTwo.alpha = 1;
-	
-		wordsNineteen.alpha = 0;
+		nameSix.alpha = 1;
 		wordsTwenty.alpha = 1;
 	end
 	if count == 21 then
-		faceTwo.alpha = 0;
 		faceFour.alpha = 1;
-		
-		nameSix.alpha = 0;
 		nameThree.alpha = 1;
-	
-		wordsTwenty.alpha = 0;
 		wordsTwentyOne.alpha = 1;
 	end
 	if count == 22 then
-		wordsTwentyOne.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsTwentyTwo.alpha = 1;
 	end
 	if count == 23 then
-		wordsTwentyTwo.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsTwentyThree.alpha = 1;
 	end
 	if count == 24 then
-		wordsTwentyThree.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsTwentyFour.alpha = 1;
 	end
 	if count == 25 then
-		faceFour.alpha = 0;
 		faceThree.alpha = 1;
-		
-		nameThree.alpha = 0;
 		nameSix.alpha = 1;
-	
-		wordsTwentyFour.alpha = 0;
 		wordsTwentyFive.alpha = 1;
 	end
 	if count == 26 then
-		faceThree.alpha = 0;
 		faceOne.alpha = 1;
-		
-		nameSix.alpha = 0;
 		nameTwo.alpha = 1;
-	
-		wordsTwentyFive.alpha = 0;
 		wordsTwentySix.alpha = 1;
 	end
 	if count == 27 then
-		faceOne.alpha = 0;
 		faceSix.alpha = 1;
-		
-		nameTwo.alpha = 0;
 		nameFour.alpha = 1;
-		
-		wordsTwentySix.alpha = 0;
 		wordsTwentySeven.alpha = 1;
 	end
 	if count == 28 then
-		wordsTwentySeven.alpha = 0;
+		faceSix.alpha = 1;
+		nameFour.alpha = 1;
 		wordsTwentyEight.alpha = 1;
 	end
 	if count == 29 then
-		wordsTwentyEight.alpha = 0;
+		faceSix.alpha = 1;
+		nameFour.alpha = 1;
 		wordsTwentyNine.alpha = 1;
 	end
 	if count == 30 then
-		faceSix.alpha = 0;
 		faceNine.alpha = 1;
-		
-		nameFour.alpha = 0;
 		nameOne.alpha = 1;
-		
-		wordsTwentyNine.alpha = 0;
 		wordsThirty.alpha = 1;
 	end
 	if count == 31 then
-		wordsThirty.alpha = 0;
+		faceNine.alpha = 1;
+		nameOne.alpha = 1;
 		wordsThirtyOne.alpha = 1;
 	end
 	if count == 32 then
-		wordsThirtyOne.alpha = 0;
+		faceNine.alpha = 1;
+		nameOne.alpha = 1;
 		wordsThirtyTwo.alpha = 1;
 	end
 	if count == 33 then
-		faceNine.alpha = 0;
 		faceSeven.alpha = 1;
-		
-		nameOne.alpha = 0;
 		nameFour.alpha = 1;
-	
-		wordsThirtyTwo.alpha = 0;
 		wordsThirtyThree.alpha = 1;
 	end
 	if count == 34 then
-		faceSeven.alpha = 0;
 		faceOne.alpha = 1;
-		
-		nameFour.alpha = 0;
 		nameTwo.alpha = 1;
-	
-		wordsThirtyThree.alpha = 0;
 		wordsThirtyFour.alpha = 1;
 	end
 	if count == 35 then
-		wordsThirtyFour.alpha = 0;
+		faceOne.alpha = 1;
+		nameTwo.alpha = 1;
 		wordsThirtyFive.alpha = 1;
 	end
 	if count == 36 then
-		faceOne.alpha = 0;
 		faceFour.alpha = 1;
-		
-		nameTwo.alpha = 0;
 		nameThree.alpha = 1;
-	
-		wordsThirtyFive.alpha = 0;
 		wordsThirtySix.alpha = 1;
 	end
 	if count == 37 then
-		wordsThirtySix.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsThirtySeven.alpha = 1;
 	end
 	if count == 38 then
-		wordsThirtySeven.alpha = 0;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
 		wordsThirtyEight.alpha = 1;
 	end
 	if count == 39 then
-		wordsThirtyEight.alpha = 0;
-		wordsThirtyNine.alpha = 1;
+		faceFour.alpha = 1;
+		nameThree.alpha = 1;
+		wordsThirtyNine.alpha = 1;	
 		
 		clickBox.alpha = 0;
 		
