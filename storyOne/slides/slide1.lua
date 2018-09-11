@@ -1,5 +1,6 @@
 local composer = require( "composer" );
 local saver = require( "saving" );
+local music = require( "music" );
 saver.reWP(1);
 local scene = composer.newScene();
 
@@ -761,16 +762,19 @@ end
 -- go to another scene
 
 function onBackBtn()
+	music.onSounds();
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
 end
 
 function onBtnOne()
+	music.onSounds();
 	saver.reWC(1);
 	composer.removeScene("storyOne.slides.slide1");
 	composer.gotoScene( "storyOne.slides.slide2", "slideLeft", 800 );
 end
 
 function onBtnTwo()
+	music.onSounds();
 	saver.reWC(1);
 	composer.removeScene("storyOne.slides.slide1");
 	composer.gotoScene( "storyOne.slides.slide3", "slideLeft", 800 );

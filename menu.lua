@@ -1,5 +1,6 @@
 local composer = require( "composer" );
 local scene = composer.newScene();
+local music = require( "music" );
 
 local sceneGroup;
 local background;
@@ -29,8 +30,8 @@ function createAll(scene)
 end
 
 function onPlayBtn()
-	-- clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
-	composer.gotoScene( "gameVision", "fade", 1200 );
+	music.onSounds();
+	composer.gotoScene( "openText", "fade", 800 );
 end
 
 -----------------------------------------------------------------------------------------

@@ -1,4 +1,5 @@
 local composer = require( "composer" );
+local music = require( "music" );
 local scene = composer.newScene();
 
 local sceneGroup;
@@ -19,9 +20,9 @@ function createAll(scene)
 	background.x = display.contentCenterX;
 	background.y = display.contentCenterY;
 	
-	title = display.newImageRect("title.png", 500, 200);
-	title.x = display.contentCenterX;
-	title.y = display.contentCenterY/5.4;
+	title = display.newImageRect("titleTestNine.png", 350, 280);
+	title.x = display.contentCenterX + 20;
+	title.y = display.contentCenterY/3.2;
 	
 	partOne = display.newImageRect("achivments/Locked.png", 500, 150);
 	partOne.x = display.contentCenterX;
@@ -50,6 +51,7 @@ end
 -- go to another scene
 
 function onBackBtn()
+	music.onSounds();
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
 end
 

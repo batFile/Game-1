@@ -1,5 +1,6 @@
 local composer = require( "composer" );
 local saver = require( "saving" );
+local music = require( "music" );
 local scene = composer.newScene();
 
 local sceneGroup;
@@ -19,17 +20,17 @@ local checkBack = false;
 
 function createAll(scene)
 	
-	background = display.newImageRect("1b.jpg", display.contentWidth, display.contentHeight);
-	background.x = display.contentCenterX;
-	background.y = display.contentCenterY;
+	-- background = display.newImageRect("1b.jpg", display.contentWidth, display.contentHeight);
+	-- background.x = display.contentCenterX;
+	-- background.y = display.contentCenterY;
 	
-	title = display.newImageRect("title.png", 500, 200);
-	title.x = display.contentCenterX;
-	title.y = display.contentCenterY/5.4;
+	title = display.newImageRect("titleTestNine.png", 350, 280);
+	title.x = display.contentCenterX + 20;
+	title.y = display.contentCenterY/3.2;
 	
-	content = display.newImageRect("content.jpg", 500, 500);
-	content.x = display.contentCenterX;
-	content.y = display.contentCenterY/1.4;
+	-- content = display.newImageRect("content.jpg", 500, 500);
+	-- content.x = display.contentCenterX;
+	-- content.y = display.contentCenterY/1.4;
 	
 	playBtn = display.newImageRect("playBtn.png", 460, 200);
 	playBtn.x = display.contentCenterX;
@@ -39,11 +40,11 @@ function createAll(scene)
 	choosePart.x = display.contentCenterX;
 	choosePart.y = display.contentCenterY*1.53;
 	
-	conf = display.newImageRect("confBtn.png", 200, 200);
+	conf = display.newImageRect("confBtn.png", 150, 150);
 	conf.x = display.contentCenterX-200;
 	conf.y = display.contentCenterY*1.8;
 	
-	closeBtn = display.newImageRect("exitBtn.png", 200, 200);
+	closeBtn = display.newImageRect("back.png", 150, 150);
 	closeBtn.x = display.contentCenterX+200;
 	closeBtn.y = display.contentCenterY*1.8;
 	
@@ -62,8 +63,8 @@ function createAll(scene)
 	playBtn:addEventListener('tap', onPlayBtn);
 	choosePart:addEventListener('tap', onChoosePart);
 	
-	scene:insert( background );
-	scene:insert( content );
+	-- scene:insert( background );
+	-- scene:insert( content );
 	scene:insert( playBtn );
 	scene:insert( title );
 	scene:insert( choosePart );
@@ -76,7 +77,7 @@ function createAll(scene)
 end
 
 function onConf()
-	-- clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
+	music.onSounds();
 	congBlock.x = display.contentCenterX;
 	closeConf.x = display.contentCenterX+150;
 	resetBtn.x = display.contentCenterX;
@@ -85,7 +86,7 @@ function onConf()
 end
 
 function onCloseConf()
-	-- clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
+	music.onSounds();
 	congBlock.x = display.contentCenterX*4;
 	closeConf.x = display.contentCenterX*4;
 	resetBtn.x = display.contentCenterX*4;
@@ -94,7 +95,7 @@ function onCloseConf()
 end
 
 function onReset()
-	-- clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
+	music.onSounds();
 	saver.reWP(1);
 	saver.reWC(1);
 	
@@ -105,23 +106,21 @@ end
 -- go to another scene
 
 function onChoosePart()
-	-- clickMusicChannel = audio.play( clickMusic, { channel=1, loops=0} );
+	music.onSounds();
 	composer.gotoScene( "storyOne.parts", "fade", 800 );
 end
 
 function onPlayBtn()
-	local tmp = saver.readPart();
-	composer.gotoScene( "storyOne.slides.slide"..tmp, "fade", 800 );
+	music.onSounds();
+	-- local tmp = saver.readPart();
+	composer.gotoScene( "storyOne.slides.slide"..saver.readPart(), "fade", 800 );
 end
 
 -- close game Part
 
 function closeapp()
-    if  system.getInfo("platformName")=="Android" then
-		native.requestExit()
-    else
-		os.exit();
-    end
+	music.onSounds();
+	composer.gotoScene( "gameVision", "fade", 800 );
 end
 
 function deleteAll()

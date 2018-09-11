@@ -1,11 +1,13 @@
-local composer = require "composer";
+local composer = require ("composer");
+local music = require( "music" );
 display.setStatusBar( display.HiddenStatusBar );
+music.onBackMusic();
 -- local fileO = "part.txt";
 -- local fileT = "count.txt";
 -- local lines = {};
 -- local linesT = {};
 
--- -- local bgmusic = audio.loadStream("bgmusic.mp3");
+-- --  audio.loadStream("bgmusic.mp3");
 
 -- -- local backgroundMusicChannel = audio.play( bgmusic, { channel=1, loops=-1} );
 

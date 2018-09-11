@@ -1,5 +1,6 @@
 local composer = require( "composer" );
 local saver = require( "saving" );
+local music = require( "music" );
 saver.reWP(4);
 local scene = composer.newScene();
 
@@ -356,6 +357,218 @@ end
 
 function onAchivTwoEnd()
 	transition.to( achivTwo, { time=2500, alpha=0 });
+end
+
+function checkAlphaOne()
+	if count == 2 then
+		faceSixteen.alpha = 1;
+		nameFive.alpha = 1;
+		wordsTwo.alpha = 1;
+	end
+	if count == 3 then
+		faceSixteen.alpha = 1;
+		nameFive.alpha = 1;
+		wordsThree.alpha = 1;
+	end
+	if count == 4 then
+		faceSeven.alpha = 1;
+		nameThree.alpha = 1;
+		wordsFour.alpha = 1;
+	end
+	if count == 5 then
+		faceEighteen.alpha = 1;
+		nameFive.alpha = 1;
+		wordsFive.alpha = 1;
+	end
+	if count == 6 then
+		faceTen.alpha = 1;
+		nameFour.alpha = 1;
+		wordsSix.alpha = 1;
+	end
+	if count == 7 then
+		faceFour.alpha = 1;
+		nameSix.alpha = 1;
+		wordsSeven.alpha = 1;
+	end
+	if count == 8 then
+		faceFour.alpha = 1;
+		nameSix.alpha = 1;
+		wordsEight.alpha = 1;	
+	end
+	if count == 9 then
+		faceEighteen.alpha = 1;
+		nameFive.alpha = 1;
+		wordsNine.alpha = 1;
+	end
+	if count == 10 then
+		faceFive.alpha = 1;
+		nameSix.alpha = 1;
+		wordsTen.alpha = 1;
+	end
+end
+
+function checkAlphaTwo()
+	if count == 11 then
+		faceSeventeen.alpha = 1;
+		nameFive.alpha = 1;
+		wordsEleven.alpha = 1;
+	end
+	if count == 12 then
+		faceSix.alpha = 1;
+		nameSix.alpha = 1;
+		wordsTwelve.alpha = 1;
+	end
+	if count == 13 then
+		faceThirteen.alpha = 1;
+		nameOne.alpha = 1;
+		wordsThirteen.alpha = 1;
+	end
+	if count == 14 then
+		faceThirteen.alpha = 1;
+		nameOne.alpha = 1;
+		wordsFourteen.alpha = 1;
+	end
+	if count == 15 then
+		faceSeventeen.alpha = 1;
+		nameFive.alpha = 1;
+		wordsFifteen.alpha = 1;
+	end
+	if count == 16 then
+		faceSix.alpha = 1;
+		nameSix.alpha = 1;
+		wordsSixteen.alpha = 1;
+	end
+	if count == 17 then
+		faceThirteen.alpha = 1;
+		nameOne.alpha = 1;	
+		wordsSeventeen.alpha = 1;
+	end
+	if count == 18 then
+		faceFour.alpha = 1;
+		nameSix.alpha = 1;
+		wordsEighteen.alpha = 1;
+	end
+	if count == 19 then
+		faceThirteen.alpha = 1;
+		nameOne.alpha = 1;
+		wordsNineteen.alpha = 1;
+	end
+	if count == 20 then
+		faceThirteen.alpha = 1;
+		nameOne.alpha = 1;
+		wordsTwenty.alpha = 1;
+	end
+end
+
+function checkAlphaThree()
+	if count == 21 then
+		faceThirteen.alpha = 1;
+		nameOne.alpha = 1;
+		wordsTwentyOne.alpha = 1;
+	end
+	if count == 22 then
+		faceFour.alpha = 1;
+		nameSix.alpha = 1;
+		wordsTwentyTwo.alpha = 1;
+	end
+	if count == 23 then
+		faceSixteen.alpha = 1;
+		nameFive.alpha = 1;
+		wordsTwentyThree.alpha = 1;
+	end
+	if count == 24 then
+		faceFour.alpha = 1;
+		nameSix.alpha = 1;
+		wordsTwentyFour.alpha = 1;
+	end
+	if count == 25 then
+		faceEleven.alpha = 1;
+		nameFour.alpha = 1;
+		wordsTwentyFive.alpha = 1;
+	end
+	if count == 26 then
+		faceTwo.alpha = 1;
+		nameTwo.alpha = 1;
+		wordsTwentySix.alpha = 1;
+	end
+	if count == 27 then
+		faceFour.alpha = 1;
+		nameSix.alpha = 1;
+		wordsTwentySeven.alpha = 1;
+	end
+	if count == 28 then
+		faceSeven.alpha = 1;
+		nameThree.alpha = 1;
+		wordsTwentyEight.alpha = 1;
+	end
+	if count == 29 then
+		faceFour.alpha = 1;
+		nameSix.alpha = 1;
+		wordsTwentyNine.alpha = 1;
+	end
+	if count == 30 then
+		faceSeven.alpha = 1;
+		nameThree.alpha = 1;
+		wordsThirty.alpha = 1;
+	end
+end
+
+function checkAlphaFour()
+	if count == 31 then
+		faceTen.alpha = 1;
+		nameFour.alpha = 1;
+		wordsThirtyOne.alpha = 1;
+	end
+	if count == 32 then
+		faceNine.alpha = 1;
+		nameThree.alpha = 1;
+		wordsThirtyTwo.alpha = 1;
+	end
+	if count == 33 then
+		faceThirteen.alpha = 1;
+		nameOne.alpha = 1;
+		wordsThirtyThree.alpha = 1;
+	end
+	if count == 34 then
+		faceFifteeen.alpha = 1;
+		nameOne.alpha = 1;
+		wordsThirtyFour.alpha = 1;
+	end
+	if count == 35 then
+		faceFour.alpha = 1;
+		nameSix.alpha = 1;
+		wordsThirtyFive.alpha = 1;
+	end
+	if count == 36 then
+		faceSixteen.alpha = 1;
+		nameFive.alpha = 1;
+		wordsThirtySix.alpha = 1;
+	end
+	if count == 37 then
+		faceThirteen.alpha = 1;
+		nameOne.alpha = 1;
+		wordsThirtySeven.alpha = 1;
+	end
+	if count == 38 then
+		faceSixteen.alpha = 1;
+		nameFive.alpha = 1;
+		wordsThirtyEight.alpha = 1;
+	end
+	if count == 39 then
+		faceSeven.alpha = 1;
+		nameThree.alpha = 1;
+		wordsThirtyNine.alpha = 1;
+	end
+	if count == 40 then
+		faceTen.alpha = 1;
+		nameFour.alpha = 1;
+		wordsFourty.alpha = 1;
+	end
+	if count == 41 then
+		faceThree.alpha = 1;
+		nameTwo.alpha = 1;
+		wordsFourtyOne.alpha = 1;
+	end
 end
 
 function subFuncChangeAlphaOne()
@@ -744,10 +957,10 @@ function subFuncChangeAlphaFour()
 end
 
 function checkAlpha()
-	subFuncChangeAlphaOne();
-	subFuncChangeAlphaTwo();
-	subFuncChangeAlphaThree();
-	subFuncChangeAlphaFour();
+	checkAlphaOne();
+	checkAlphaTwo();
+	checkAlphaThree();
+	checkAlphaFour();
 end
 
 function changeAlpha()
@@ -773,8 +986,7 @@ end
 -- go to another scene
 
 function onBackBtn()
-	-- composer.setVariable( "checkpoint", 4 );
-	-- composer.setVariable( "count", count );
+	music.onSounds();
 	composer.gotoScene( "storyOne.gameVisionOne", "fade", 800 );
 end
 
