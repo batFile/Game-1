@@ -1,3 +1,5 @@
+local json = require("json");
+
 local fileO = "part.txt";
 local fileT = "count.txt";
 

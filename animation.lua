@@ -9,7 +9,7 @@ local sheetdata = {
 local mySheet = graphics.newImageSheet("spriteSheet.png", sheetdata);
 
 local seequenceData = {
-	{name = "startAnim", start = 1, count = 10, time = 1090, loopCount = 1}
+	{name = "startAnim", start = 1, count = 10, time = 1090, loopCount = 0}
 };
 
 local animation = display.newSprite(mySheet, seequenceData);

@@ -1,7 +1,7 @@
 local composer = require( "composer" );
-local saver = require( "saving" );
+-- local saver = require( "saving" );
 local music = require( "music" );
-saver.reWP(1);
+-- saver.reWP(1);
 local scene = composer.newScene();
 
 local Timer;
@@ -11,7 +11,8 @@ local sceneGroup;
 local background;
 local backBtn;
 
-local count = tonumber(saver.readCount());
+-- local count = tonumber(saver.readCount());
+local count = 1;
 
 local choiceBtnOne;
 local choiceBtnTwo;
@@ -755,7 +756,7 @@ function changeAlpha()
 		
 	end
 	
-	saver.reWC(count);
+	-- saver.reWC(count);
 	
 end
 
@@ -768,14 +769,14 @@ end
 
 function onBtnOne()
 	music.onSounds();
-	saver.reWC(1);
+	-- saver.reWC(1);
 	composer.removeScene("storyOne.slides.slide1");
 	composer.gotoScene( "storyOne.slides.slide2", "slideLeft", 800 );
 end
 
 function onBtnTwo()
 	music.onSounds();
-	saver.reWC(1);
+	-- saver.reWC(1);
 	composer.removeScene("storyOne.slides.slide1");
 	composer.gotoScene( "storyOne.slides.slide3", "slideLeft", 800 );
 end

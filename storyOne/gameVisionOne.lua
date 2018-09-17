@@ -112,7 +112,7 @@ end
 
 function onPlayBtn()
 	music.onSounds();
-	-- local tmp = saver.readPart();
+	local tmp = saver.readPart();
 	composer.gotoScene( "storyOne.slides.slide"..saver.readPart(), "fade", 800 );
 end
 

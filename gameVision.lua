@@ -1,5 +1,5 @@
 local composer = require( "composer" );
-local saver = require( "saving" );
+-- local saver = require( "saving" );
 local animation = require( "animation" );
 local music = require( "music" );
 local scene = composer.newScene();
@@ -95,12 +95,12 @@ end
 
 function onReset()
 	music.onSounds();
-	saver.reWP(1);
-	saver.reWC(1);
+	-- saver.reWP(1);
+	-- saver.reWC(1);
 	
-	saver.reWAchOne(0);
-	saver.reWAchTwo(0);
-	saver.reWAchThree(0);
+	-- saver.reWAchOne(0);
+	-- saver.reWAchTwo(0);
+	-- saver.reWAchThree(0);
 end
 
 -- close game Part
